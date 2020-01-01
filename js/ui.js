@@ -96,6 +96,20 @@ const eliminarOpcion = (event) => {
 
 $('.option').click(event => eliminarOpcion(event));
 
+/* ELIMINAR ELEMENTOS DE LA LISTA */
+const eliminarDeLista = (event) => {
+    
+    if(event.target.tagName === 'SPAN') {
+        
+        const id = event.target.getAttribute('data-id');
+        const element = $('.listed[data-id=' + id + ']'); 
+
+        $(element).remove();
+    }
+};
+
+$('.listed').click(event => eliminarDeLista(event))
+
 let lista = [];
 
 /* AGREGAR A LA LISTA */
@@ -103,7 +117,7 @@ const actualizarLista = (event) => {
     const id = event.target.getAttribute('data-id');
     const tipo = $('.option[data-id=' + id + '] > h4'); 
     const input = $('.option[data-id=' + id + '] > input'); 
-    console.log(input.val())
+    
     if(input.val() !== '0' && !isNaN(input.val())) {
 
         const item = {
@@ -122,25 +136,35 @@ const actualizarLista = (event) => {
             const itemId = objFind.id;
             const prevItem = $('.listed[data-id=' + itemId + ']'); 
             const updateditem = agregarALista(objFind, itemId);
-            
-            $(prevItem).replaceWith(updateditem)
-            //$('.added').append(updateditem)
 
+            if(!!prevItem[0]){
+                /* ACTUALIZAR EL ITEM DE LA LISTA */
+                $(prevItem).replaceWith(updateditem);
+            } else {
+                /* AGREGAR ELEMENTO ACTUALIZADO SI EL ANTERIOR FUE BORRADO */
+                objFind.cantidad = item.cantidad;
+                const restartedItem = agregarALista(objFind, itemId);
+                $('.added').append(restartedItem);
+            }
+            
+            /* AGREGAR EVENTO PARA ELIMINAR */
+            const upitm = $('.listed[data-id=' + itemId + ']'); 
+            $(upitm).click(event => eliminarDeLista(event));
+            
         } else {
             lista.push(item);
             const newid = lista.length;
             const newitem = agregarALista(item, newid);
 
             $('.added').append(newitem);
-            //list.innerHTML = abastecer.map(createItem).join('\n');
+
+            
+            const itm = $('.listed[data-id=' + newid + ']'); 
+            $(itm).click(event => eliminarDeLista(event));
         }
     }
 
     input.val('');
-};
-
-const actualizarItem = () => {
-
 };
 
 const agregarALista = (item, id) => {
@@ -153,6 +177,10 @@ const agregarALista = (item, id) => {
     `
 };
 
-/* Actualizar Lista */
+/* ACTUALIZAR LISTA */
 $('.addToList').click(event => actualizarLista(event));
+
+
+
+
 
