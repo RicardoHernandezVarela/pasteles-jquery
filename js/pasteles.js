@@ -15,5 +15,3 @@ let pasteles = {
     }
 
 };
-
-export default pasteles;

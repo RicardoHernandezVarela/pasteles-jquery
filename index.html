@@ -17,35 +17,17 @@
         <div class="main">
             <div class="addOption">
                 <form class="optionForm">
-                    <h4>Agrega una nueva opción</h4>
-                    <label for="tipo">Tipo del pastel</label>
-                    <input type="text" id="tipo" placeholder="Tipo">
+                    <h4>Agregar una nueva opción</h4>
+                    <div class="formFields">
+                        <input type="text" id="tipo" placeholder="Tipo">
 
-                    <label for="precio">Precio</label>
-                    <input type="text" id="precio" placeholder="Precio">
-
-                    <button type="button">Agregar</button>
+                        <input type="text" id="precio" placeholder="Precio">
+    
+                        <button type="button" id="add">Agregar</button>
+                    </div>
                 </form>
             </div>
             <ul class="options">
-                <li class="option">
-                    <span>Cocoa</span>
-                    <input type="text" placeholder="Cantidad">
-                    <hr>
-                    <button type="button">+</button>
-                </li>
-                <li class="option">
-                    <span>Cajeta</span>
-                    <input type="text" placeholder="Cantidad">
-                    <hr>
-                    <button type="button">+</button>
-                </li>
-                <li class="option">
-                    <span>Limón</span>
-                    <input type="text" placeholder="Cantidad">
-                    <hr>
-                    <button type="button">+</button>
-                </li>
             </ul>
             <div class="itemsList">
                 items list
@@ -59,6 +41,6 @@
         crossorigin="anonymous">
     </script>
     
-    <script src="./js/app.js"></script>
+    <script src="./js/ui.js"></script>
 </body>
 </html>
