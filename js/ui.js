@@ -117,7 +117,7 @@ const actualizarLista = (event) => {
     const id = event.target.getAttribute('data-id');
     const tipo = $('.option[data-id=' + id + '] > h4'); 
     const input = $('.option[data-id=' + id + '] > input'); 
-    
+
     if(input.val() !== '0' && !isNaN(input.val())) {
 
         const item = {
@@ -129,7 +129,7 @@ const actualizarLista = (event) => {
         /* VERIFICAR SI EL PASTEL YA ESTA EN LISTA */;
 
         if(lista.some(prod => prod.tipo === item.tipo)){
-
+            
             let objFind = lista.find(obj => obj.tipo == item.tipo);
             objFind.cantidad = objFind.cantidad + item.cantidad;
             
